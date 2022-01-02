@@ -19,7 +19,13 @@ class ListadoDeProductos extends StatelessWidget {
           child: ListTile(
             tileColor: Colors.white,
             title: Text(producto.title),
-            leading:Image.network(producto.image),
+            leading: Container(
+              child: Image.network(
+                producto.image,
+                height: 50,
+                width: 50,
+              ),
+            ),
             onTap: () {
               Navigator.push(
                   context,

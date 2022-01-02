@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
           child: const Icon(Icons.refresh),
         ),
         appBar: AppBar(
-          title: const Center(child: Text('Mis contactos')),
+          title: const Center(child: Text('Nuestros Productos')),
         ),
         body: SafeArea(
           child: Consumer<UsuarioProvider>(
