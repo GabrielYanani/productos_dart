@@ -28,8 +28,13 @@ class UsuarioProvider extends ChangeNotifier {
 
   cargarListadoFavoritoDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? listado = await prefs.getStringList('listadoFavoritos');
-    _listadoFavoritos.addAll(listado!);
+    if (prefs.getStringList('listadoFavoritos') == null) {
+      return const Text('vacio');
+    }
+    {
+      List<String>? listado = prefs.getStringList('listadoFavoritos');
+      _listadoFavoritos.addAll(listado!);
+    }
     getUsuarios();
   }
 
@@ -44,14 +49,19 @@ class UsuarioProvider extends ChangeNotifier {
       _listadoCompras.add(idUsuario);
     }
 
-    await prefs.setStringList('listadoFavoritos', _listadoCompras);
+    await prefs.setStringList('listadoCompras', _listadoCompras);
     notifyListeners();
   }
 
   cargarListadoComprasDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String>? miListadoCompras =  await prefs.getStringList('listadoCompras');
-    _listadoCompras.addAll(miListadoCompras!);
+   if (prefs.getStringList('listadoCompras') == null) {
+      return const Text('vacio');
+    }
+    {
+      List<String>? miListadoCompras = prefs.getStringList('listadoCompras');
+      _listadoCompras.addAll(miListadoCompras!);
+    }
     getUsuarios();
   }
 

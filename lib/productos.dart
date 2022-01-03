@@ -19,7 +19,7 @@ class Productos {
         required this.rating,
     });
 
-    final int id;
+    final String id;
     final String title;
     final double price;
     final String description;
@@ -28,7 +28,7 @@ class Productos {
     final Rating rating;
 
     factory Productos.fromJson(Map<String, dynamic> json) => Productos(
-        id: json["id"],
+        id: json["id"].toString(),
         title: json["title"],
         price: json["price"].toDouble(),
         description: json["description"],

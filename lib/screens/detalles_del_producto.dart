@@ -15,11 +15,11 @@ class DetalleDeProducto extends StatelessWidget {
           IconButton(
             onPressed: () => context
                 .read<UsuarioProvider>()
-                .agregarRemoverUsuarioFavorito('${producto.id}'),
+                .agregarRemoverUsuarioFavorito(producto.id),
             icon: Consumer<UsuarioProvider>(
               builder: (context, data, _) {
                 bool esFavorito =
-                    data.listadoFavoritos.contains('${producto.id}');
+                    data.listadoFavoritos.contains(producto.id);
 
                 return Icon(
                   esFavorito ? Icons.favorite : Icons.favorite_outline,
@@ -31,11 +31,11 @@ class DetalleDeProducto extends StatelessWidget {
           IconButton(
             onPressed: () => context
                 .read<UsuarioProvider>()
-                .agregarRemoverArticulo('${producto.id}'),
+                .agregarRemoverArticulo(producto.id),
             icon: Consumer<UsuarioProvider>(
               builder: (context, data, _) {
                 bool esFavorito =
-                    data.listadoCompras.contains('${producto.id}');
+                    data.listadoCompras.contains(producto.id);
 
                 return Icon(
                   esFavorito
