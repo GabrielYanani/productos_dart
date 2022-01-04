@@ -15,14 +15,15 @@ class UsuarioProvider extends ChangeNotifier {
   final List<String> _listadoFavoritos = [];
   List<String> get listadoFavoritos => _listadoFavoritos;
 
-  agregarRemoverUsuarioFavorito(String idUsuario) async {
+  agregarRemoverUsuarioFavorito(String idProducto) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (_listadoFavoritos.contains(idUsuario) == true) {
-      _listadoFavoritos.remove(idUsuario);
+    if (_listadoFavoritos.contains(idProducto) == true) {
+      _listadoFavoritos.remove(idProducto);
     } else {
-      _listadoFavoritos.add(idUsuario);
+      _listadoFavoritos.add(idProducto);
     }
     await prefs.setStringList('listadoFavoritos', _listadoFavoritos);
+    
     notifyListeners();
   }
 
@@ -55,7 +56,7 @@ class UsuarioProvider extends ChangeNotifier {
 
   cargarListadoComprasDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-   if (prefs.getStringList('listadoCompras') == null) {
+    if (prefs.getStringList('listadoCompras') == null) {
       return const Text('vacio');
     }
     {
@@ -72,10 +73,10 @@ class UsuarioProvider extends ChangeNotifier {
       Client http = Client();
       Uri uri = Uri.parse('https://fakestoreapi.com/products');
       Response respuesta = await http.get(uri);
-      prefs.setString('user', respuesta.body);
+      prefs.setString('producto', respuesta.body);
       datosJson = respuesta.body;
     } catch (e) {
-      datosJson = prefs.getString('user');
+      datosJson = prefs.getString('producto');
     }
     final List<Productos> productos = productosFromJson(datosJson!);
 

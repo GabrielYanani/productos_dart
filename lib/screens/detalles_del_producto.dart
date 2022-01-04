@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:productos_dart/controlador.dart';
 import 'package:productos_dart/productos.dart';
-import 'package:provider/provider.dart';
+import 'package:productos_dart/widget/icon_button_compras.dart';
+import 'package:productos_dart/widget/icon_button_favoritos.dart';
+
 
 class DetalleDeProducto extends StatelessWidget {
   final Productos producto;
@@ -9,47 +10,15 @@ class DetalleDeProducto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () => context
-                .read<UsuarioProvider>()
-                .agregarRemoverUsuarioFavorito(producto.id),
-            icon: Consumer<UsuarioProvider>(
-              builder: (context, data, _) {
-                bool esFavorito =
-                    data.listadoFavoritos.contains(producto.id);
-
-                return Icon(
-                  esFavorito ? Icons.favorite : Icons.favorite_outline,
-                  color: esFavorito ? Colors.red : Colors.white,
-                );
-              },
-            ),
-          ),
-          IconButton(
-            onPressed: () => context
-                .read<UsuarioProvider>()
-                .agregarRemoverArticulo(producto.id),
-            icon: Consumer<UsuarioProvider>(
-              builder: (context, data, _) {
-                bool esFavorito =
-                    data.listadoCompras.contains(producto.id);
-
-                return Icon(
-                  esFavorito
-                      ? Icons.shopping_cart
-                      : Icons.shopping_cart_outlined,
-                  color: esFavorito ? Colors.black : Colors.white,
-                );
-              },
-            ),
-          )
-        ],
-      ),
-      body: SafeArea(
-        child: Center(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButtonFavoritos(producto: producto),
+            IconButtonCompras(producto: producto)
+          ],
+        ),
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,3 +87,4 @@ class DetalleDeProducto extends StatelessWidget {
     );
   }
 }
+
