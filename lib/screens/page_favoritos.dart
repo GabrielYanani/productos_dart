@@ -55,7 +55,7 @@
 //                 ),
 //               ),
 //               Text(
-//                 producto.title,
+//                 favorito.title,
 //                 textScaleFactor: 1.3,
 //                 textAlign: TextAlign.center,
 //               ),
