@@ -20,6 +20,11 @@ class ListadoDeProductos extends StatelessWidget {
             tileColor: Colors.white,
             title: Text(producto.title),
             leading: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black38,
+                  ),
+                  borderRadius: const BorderRadius.all(Radius.circular(5))),
               child: Image.network(
                 producto.image,
                 height: 50,

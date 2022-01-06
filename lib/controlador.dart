@@ -15,44 +15,48 @@ class UsuarioProvider extends ChangeNotifier {
   final List<String> _listadoFavoritos = [];
   List<String> get listadoFavoritos => _listadoFavoritos;
 
-  agregarRemoverUsuarioFavorito(String idProducto) async {
+  Future<bool> agregarRemoverUsuarioFavorito(String idProducto) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool fueAgregado;
     if (_listadoFavoritos.contains(idProducto) == true) {
       _listadoFavoritos.remove(idProducto);
+      fueAgregado = false;
     } else {
       _listadoFavoritos.add(idProducto);
+      fueAgregado = true;
     }
     await prefs.setStringList('listadoFavoritos', _listadoFavoritos);
 
     notifyListeners();
+    return fueAgregado;
   }
 
   cargarListadoFavoritoDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('listadoFavoritos') == null) {
-      return const Text('vacio');
-    }
-    {
-      List<String>? listado = prefs.getStringList('listadoFavoritos');
-      _listadoFavoritos.addAll(listado!);
+    List<String>? listado = await prefs.getStringList('listadoFavoritos');
+    if (listado != null) {
+      _listadoFavoritos.addAll(listado);
     }
     getProductos();
   }
 
-  
   final List<String> _listadoCompras = [];
   List<String> get listadoCompras => _listadoCompras;
 
-  agregarRemoverArticulo(String idProducto) async {
+  Future<bool> agregarRemoverArticulo(String idProducto) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool fueAgregado;
     if (_listadoCompras.contains(idProducto) == true) {
       _listadoCompras.remove(idProducto);
+      fueAgregado = false;
     } else {
       _listadoCompras.add(idProducto);
+      fueAgregado = true;
     }
 
     await prefs.setStringList('listadoCompras', _listadoCompras);
     notifyListeners();
+    return fueAgregado;
   }
 
   cargarListadoComprasDesdePreferencias() async {

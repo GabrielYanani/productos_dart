@@ -13,9 +13,24 @@ class IconButtonCompras extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(tooltip: 'comprar',
-      onPressed: () =>
-          context.read<UsuarioProvider>().agregarRemoverArticulo(producto.id),
+    return IconButton(
+      tooltip: 'comprar',
+      iconSize: 40,
+      onPressed: () async {
+        bool isFavorite = await context
+            .read<UsuarioProvider>()
+            .agregarRemoverArticulo(producto.id);
+        var mensaje = [
+          'Agregaste al carrito de compras',
+          'Quitaste del carrito de compras'
+        ];
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(mensaje[isFavorite ? 0 : 1]),
+          ),
+        );
+      },
       icon: Consumer<UsuarioProvider>(
         builder: (context, data, _) {
           bool esFavorito = data.listadoCompras.contains(producto.id);

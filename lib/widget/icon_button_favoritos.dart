@@ -13,18 +13,28 @@ class IconButtonFavoritos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(tooltip: 'Agregar a Favoritos',
-      onPressed: () => context
-          .read<UsuarioProvider>()
-          .agregarRemoverUsuarioFavorito(producto.id),
+    return IconButton(
+      tooltip: 'Agregar a Favoritos',
+      onPressed: () async {
+        bool isFavorite = await context
+            .read<UsuarioProvider>()
+            .agregarRemoverUsuarioFavorito(producto.id);
+        var mensaje = ['Agregaste a favoritos', 'Eliminaste de favoritos'];
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(mensaje[isFavorite ? 0 : 1]),
+          ),
+        );
+      },
       icon: Consumer<UsuarioProvider>(
         builder: (context, data, _) {
-          bool esFavorito =
-              data.listadoFavoritos.contains(producto.id);
+          bool esFavorito = data.listadoFavoritos.contains(producto.id);
 
           return Icon(
             esFavorito ? Icons.favorite : Icons.favorite_outline,
             color: esFavorito ? Colors.red : Colors.white,
+            size: 30,
           );
         },
       ),

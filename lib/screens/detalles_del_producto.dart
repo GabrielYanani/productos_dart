@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:productos_dart/productos.dart';
+import 'package:productos_dart/widget/cantidad.dart';
 import 'package:productos_dart/widget/icon_button_compras.dart';
 import 'package:productos_dart/widget/icon_button_favoritos.dart';
 
@@ -33,14 +34,16 @@ class DetalleDeProducto extends StatelessWidget {
               ),
               Text(
                 producto.title,
+                style: const TextStyle(decoration: TextDecoration.underline),
                 textScaleFactor: 1.3,
                 textAlign: TextAlign.center,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    const Cantidad(),
                     IconButtonCompras(producto: producto),
                     const SizedBox(
                       height: 10,
@@ -48,7 +51,7 @@ class DetalleDeProducto extends StatelessWidget {
                     ),
                     Text(
                       'Precio: \$${producto.price}',
-                      textScaleFactor: 1.5,
+                      textScaleFactor: 1.3,
                     ),
                   ],
                 ),
