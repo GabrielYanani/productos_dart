@@ -61,13 +61,9 @@ class UsuarioProvider extends ChangeNotifier {
 
   cargarListadoComprasDesdePreferencias() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getStringList('listadoCompras') == null) {
-      return const Text('vacio');
-    }
-    {
-      List<String>? miListadoCompras = prefs.getStringList('listadoCompras');
-      _listadoCompras.addAll(miListadoCompras!);
-    }
+    List<String>? miListadoCompras = prefs.getStringList('listadoCompras');
+    if(miListadoCompras!=null) 
+    {_listadoCompras.addAll(miListadoCompras);} 
     getProductos();
   }
 
