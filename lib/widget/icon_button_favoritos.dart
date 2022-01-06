@@ -13,7 +13,7 @@ class IconButtonFavoritos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
+    return IconButton(tooltip: 'Agregar a Favoritos',
       onPressed: () => context
           .read<UsuarioProvider>()
           .agregarRemoverUsuarioFavorito(producto.id),

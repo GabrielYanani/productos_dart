@@ -3,7 +3,6 @@ import 'package:productos_dart/productos.dart';
 import 'package:productos_dart/widget/icon_button_compras.dart';
 import 'package:productos_dart/widget/icon_button_favoritos.dart';
 
-
 class DetalleDeProducto extends StatelessWidget {
   final Productos producto;
   const DetalleDeProducto(this.producto);
@@ -15,7 +14,7 @@ class DetalleDeProducto extends StatelessWidget {
         appBar: AppBar(
           actions: [
             IconButtonFavoritos(producto: producto),
-            IconButtonCompras(producto: producto)
+            // IconButtonCompras(producto: producto)
           ],
         ),
         body: Center(
@@ -42,11 +41,7 @@ class DetalleDeProducto extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Icon(
-                      Icons.paid,
-                      size: 35,
-                      color: Colors.amberAccent,
-                    ),
+                    IconButtonCompras(producto: producto),
                     const SizedBox(
                       height: 10,
                       width: 10,
@@ -87,4 +82,3 @@ class DetalleDeProducto extends StatelessWidget {
     );
   }
 }
-

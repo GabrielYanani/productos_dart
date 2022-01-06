@@ -13,24 +13,19 @@ class IconButtonCompras extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => context
-          .read<UsuarioProvider>()
-          .agregarRemoverArticulo(producto.id),
+    return IconButton(tooltip: 'comprar',
+      onPressed: () =>
+          context.read<UsuarioProvider>().agregarRemoverArticulo(producto.id),
       icon: Consumer<UsuarioProvider>(
         builder: (context, data, _) {
-          bool esFavorito =
-              data.listadoCompras.contains(producto.id);
+          bool esFavorito = data.listadoCompras.contains(producto.id);
 
           return Icon(
-            esFavorito
-                ? Icons.shopping_cart
-                : Icons.shopping_cart_outlined,
-            color: esFavorito ? Colors.black : Colors.white,
+            esFavorito ? Icons.shopping_cart : Icons.shopping_cart_outlined,
+            color: esFavorito ? Colors.black : Colors.black,
           );
         },
       ),
     );
   }
 }
-

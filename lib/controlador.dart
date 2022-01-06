@@ -23,7 +23,7 @@ class UsuarioProvider extends ChangeNotifier {
       _listadoFavoritos.add(idProducto);
     }
     await prefs.setStringList('listadoFavoritos', _listadoFavoritos);
-    
+
     notifyListeners();
   }
 
@@ -36,18 +36,19 @@ class UsuarioProvider extends ChangeNotifier {
       List<String>? listado = prefs.getStringList('listadoFavoritos');
       _listadoFavoritos.addAll(listado!);
     }
-    getUsuarios();
+    getProductos();
   }
 
+  
   final List<String> _listadoCompras = [];
   List<String> get listadoCompras => _listadoCompras;
 
-  agregarRemoverArticulo(String idUsuario) async {
+  agregarRemoverArticulo(String idProducto) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (_listadoCompras.contains(idUsuario) == true) {
-      _listadoCompras.remove(idUsuario);
+    if (_listadoCompras.contains(idProducto) == true) {
+      _listadoCompras.remove(idProducto);
     } else {
-      _listadoCompras.add(idUsuario);
+      _listadoCompras.add(idProducto);
     }
 
     await prefs.setStringList('listadoCompras', _listadoCompras);
@@ -63,10 +64,10 @@ class UsuarioProvider extends ChangeNotifier {
       List<String>? miListadoCompras = prefs.getStringList('listadoCompras');
       _listadoCompras.addAll(miListadoCompras!);
     }
-    getUsuarios();
+    getProductos();
   }
 
-  Future<void> getUsuarios() async {
+  Future<void> getProductos() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? datosJson;
     try {

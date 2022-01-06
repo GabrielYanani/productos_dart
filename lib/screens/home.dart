@@ -9,12 +9,12 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => context.read<UsuarioProvider>().getUsuarios(),
+      onRefresh: () => context.read<UsuarioProvider>().getProductos(),
       child: SafeArea(
         child: Scaffold(
           drawer: const DrawerCompras(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => context.read<UsuarioProvider>().getUsuarios(),
+            onPressed: () => context.read<UsuarioProvider>().getProductos(),
             child: const Icon(Icons.refresh),
           ),
           appBar: AppBar(
@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
             builder: (BuildContext context, data, _) {
               if (data.productos.isEmpty) {
                 return const Center(
-                  child: Text('Lista vacia'),
+                  child: CircularProgressIndicator(),
                 );
               }
               return ListadoDeProductos(data.productos);
