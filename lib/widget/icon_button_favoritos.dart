@@ -23,6 +23,7 @@ class IconButtonFavoritos extends StatelessWidget {
         ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
+            duration: const Duration(milliseconds: 900),
             content: Text(mensaje[isFavorite ? 0 : 1]),
           ),
         );
