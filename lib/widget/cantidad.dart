@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Cantidad extends StatefulWidget {
@@ -9,8 +8,8 @@ class Cantidad extends StatefulWidget {
 }
 
 class _CantidadState extends State<Cantidad> {
-  int _counter = 0;
-
+  int _counter = 1;
+  int max = 15;
 
   void _incrementCounter() {
     setState(() {
@@ -36,7 +35,7 @@ class _CantidadState extends State<Cantidad> {
       child: Row(
         children: [
           IconButton(
-              onPressed: _incrementCounter,
+              onPressed: _counter < max ? _incrementCounter : null,
               tooltip: 'sumar',
               icon: const Icon(Icons.arrow_drop_up)),
           Text(

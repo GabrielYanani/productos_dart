@@ -1,6 +1,6 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:productos_dart/screens/page_compras.dart';
+import 'package:productos_dart/screens/page_favoritos.dart';
 
 class DrawerCompras extends StatelessWidget {
   const DrawerCompras({
@@ -38,7 +38,12 @@ class DrawerCompras extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              // Navigator.pushNamed(context, '/page_2_list');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PageFavoritos(),
+                ),
+              );
             },
             child: Row(
               children: const [
@@ -60,9 +65,12 @@ class DrawerCompras extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, '/page_3');
-            },
+            onPressed: () {Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PageCompras(),
+                ),
+              );},
             child: Row(children: const [
               Icon(
                 Icons.shopping_cart,

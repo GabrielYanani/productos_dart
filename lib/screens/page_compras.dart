@@ -5,9 +5,9 @@ import 'package:productos_dart/controlador.dart';
 import 'package:productos_dart/productos.dart';
 import 'package:productos_dart/screens/detalles_del_producto.dart';
 
-class PageFavoritos extends StatelessWidget {
+class PageCompras extends StatelessWidget {
   //  final List<Productos> productos;
-  const PageFavoritos({
+  const PageCompras({
     Key? key,
     //  required this.productos,
   }) : super(key: key);
@@ -17,25 +17,25 @@ class PageFavoritos extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('FAVORITOS')),
+          title: const Center(child: Text('MI CARRITO DE COMPRAS')),
         ),
         body:
             Consumer<UsuarioProvider>(builder: (BuildContext context, data, _) {
-          if (data.listadoFavoritos.isEmpty) {
+          if (data.listadoCompras.isEmpty) {
             return const Center(
               child: Text('Lista vacia'),
             );
           }
 
-          List<Productos> productosFavotitos = data.listadoFavoritos
+          List<Productos> productosElegidos = data.listadoCompras
               .map((id) =>
                   data.productos.firstWhere((product) => product.id == id))
               .toList();
 
           return ListView.builder(
-            itemCount: productosFavotitos.length,
+            itemCount: productosElegidos.length,
             itemBuilder: (BuildContext context, int i) {
-              final producto = productosFavotitos[i];
+              final producto = productosElegidos[i];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
@@ -59,7 +59,7 @@ class PageFavoritos extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (_) =>
-                              DetalleDeProducto(productosFavotitos[i]),
+                              DetalleDeProducto(productosElegidos[i]),
                         ));
                   },
                 ),

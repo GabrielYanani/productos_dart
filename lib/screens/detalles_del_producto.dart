@@ -45,10 +45,6 @@ class DetalleDeProducto extends StatelessWidget {
                   children: [
                     const Cantidad(),
                     IconButtonCompras(producto: producto),
-                    const SizedBox(
-                      height: 10,
-                      width: 10,
-                    ),
                     Text(
                       'Precio: \$${producto.price}',
                       textScaleFactor: 1.3,
