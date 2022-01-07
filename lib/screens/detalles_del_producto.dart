@@ -32,11 +32,14 @@ class DetalleDeProducto extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                producto.title,
-                style: const TextStyle(decoration: TextDecoration.underline),
-                textScaleFactor: 1.3,
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  producto.title,
+                  style: const TextStyle(decoration: TextDecoration.underline),
+                  textScaleFactor: 1.3,
+                  textAlign: TextAlign.center,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
