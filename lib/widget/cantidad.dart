@@ -9,6 +9,7 @@ class Cantidad extends StatefulWidget {
 
 class _CantidadState extends State<Cantidad> {
   int _counter = 1;
+  int min = 0;
   int max = 15;
 
   void _incrementCounter() {
@@ -43,7 +44,7 @@ class _CantidadState extends State<Cantidad> {
             textScaleFactor: 1.2,
           ),
           IconButton(
-              onPressed: _restar,
+              onPressed: _counter >= min ? _restar : null,
               tooltip: 'restar',
               icon: const Icon(Icons.arrow_drop_down))
         ],

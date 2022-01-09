@@ -50,8 +50,8 @@ List<Widget> crearListadoDeProductos(List<Productos> productos, BuildContext con
           ),
         );
     }).toList();
-
   }
+  // no funciona...
   //     List<Widget> crearListadoDeProductos(
 //     List<Productos> productos, BuildContext context) {
 //   return productos.map((Productos producto) {
